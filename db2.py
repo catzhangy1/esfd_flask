@@ -9,8 +9,9 @@ import psycopg2
 def connect_db():
     db = psycopg2.connect(
         database='jetblue',
-        user='postgres',
-        password='1234',
+        user='catzhangy1',
+#         user='postgres',
+#         password='1234',
         port='5432',
         host='localhost',
     )

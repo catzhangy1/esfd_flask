@@ -3,7 +3,8 @@ Created on Oct 10, 2015
 
 @author: catzhangy1
 '''
-import db, db2
+import db
+import db2
 
 from flask import Flask, render_template, flash, redirect, url_for, Blueprint, request, g
 import json
@@ -65,8 +66,9 @@ def testMehthod():
     
 @app.route('/search', methods=['GET'])
 def testMethod3():
-    print 'search'
-    return 'success'
+    for m in db2.field_query(db2.connect_db())[0]:
+        print m
+    return db2.field_query(db2.connect_db())[0]
 
 @app.route('/#/search', methods=['GET'])
 def testMehthod4():
@@ -86,17 +88,6 @@ def main():
 # #     token = util.prompt_for_user_token(username,scope)
 # #    connect.close()
 #     return render_template('index.html', name='hello')
-"""
-    try:
-        connect = db.connect_db()
-        db.init_db(connect)
-        
-        #sample query!!! 
-        print db.getSongsByGenre(connect, 1);
-        print 'Connected to database'
-    except:
-        print "Database not ready to be used"
-"""
     connect = db2.connect_db()
 #     connect.close()
 #     url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
