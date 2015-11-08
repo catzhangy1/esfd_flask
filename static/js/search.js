@@ -15,7 +15,6 @@ angular.module('esfd.search', ['ngRoute'])
             $http.get('/search',null).
                 success(function(results){
 
-                    results.map(function (o){$log.log(o)});
                     $log.log(results);
                     $window.location.path = ('/results');
                 }).
