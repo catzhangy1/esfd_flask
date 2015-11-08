@@ -50,7 +50,6 @@ angular.module('esfd', [
         },
       }
     })
-<<<<<<< HEAD
   .config(['$routeProvider',
     function($routeProvider) {
       $routeProvider.
@@ -58,12 +57,3 @@ angular.module('esfd', [
           redirectTo: '/home'
         });
     }]);
-=======
-.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      otherwise({
-        redirectTo: '/home'
-      });
-  }]);
->>>>>>> ee2bfeb74bb14dd2805a6c408ce420b41594b79b
