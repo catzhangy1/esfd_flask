@@ -18,41 +18,27 @@ def connect_db():
 
 
 # Don't call this. The database ia already set-up at this point.
-def create_table(db):
+def reset_tables(db):
     if db:
         try:
             db.cursor().execute(
-                "".join(
-                    "CREATE TABLE jetblue_data (",
-                    "origin text,",
-                    "destination text,",
-                    "hotel_property text,",
-                    "hotel_nights_stay decimal,",
-                    "hotel_check_in_date date,",
-                    "hotel_check_out_date date,",
-                    "expedia_price money,",
-                    "jetblue_price money,",
-                    "percent_savings decimal,",
-                    "month_of_travel decimal,",
-                    "advance_weeks int",
-                    ");",
-                ),
+                open("schema2.sql", "r").read(),
             )
             db.commit()
-            print "Success: Table jetblue_data Created."
+            print "Successfully reset tables."
         except:
             print "ate shat fucked died"
 
 
-# Add entries into database
-def insert_into_db(db, entries=[]):
+# Add entries into database. Must be well-formed.
+def insert_into_db(db, entries=[], table="jetblue_data"):
     if db and entries:
         try:
             db.cursor().execute(
-                "INSERT INTO jetblue_data VALUES %s" % str(entries)[1:-1],
+                "INSERT INTO %s VALUES %s" % (table, str(entries)[1:-1]),
             )
             db.commit()
-            print "Successfully inserted entries into db."
+            print "Successfully inserted entries into %s." % table
         except:
             print "ate shat fucked died"
 
@@ -70,17 +56,18 @@ def query(db, query):
 
 
 # Takes a mapping of fields, converts to a query, and executes
-def search_query(db, fields):
+def field_query(db, fields=[], table="jetblue_data"):
     if not fields:
         return query(
             db,
-            "SELECT * FROM jetblue_data ORDER BY RANDOM() LIMIT 1",
+            "SELECT * FROM %s ORDER BY RANDOM() LIMIT 1" % table,
         )
     else:
+        #### FIX POTENTIAL SQL INJECTION ####
         return query(
             db,
             ''.join(
-                "SELECT * FROM jetblue_data WHERE ",
+                "SELECT * FROM %s WHERE " % table,
                 ' AND '.join(
                     ["%s = %s" % (f[0], f[1]) for f in fields.items()],
                 ),
@@ -88,7 +75,11 @@ def search_query(db, fields):
         )
 
 
-# TODO: Addy
+def notify_contacts(db, fields):
+    persons = field_query()
+    # TODO: For each person, send email/text with info on fields
+
+
 def insert_initial_jetblue_data(db):
     import resume_parser
     insert_into_db(db, resume_parser.parseResume())
