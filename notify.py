@@ -21,8 +21,8 @@ def tolerable(n1, n2, tolerance):
 
 
 # Analyzes contacts and sends emails and texts
-def send_email_and_text(db, fields, new_entries):
-    persons = db2.field_query(db, fields, "contact_list")
+def send_email_and_text(db, new_entries):
+    persons = db2.query(db, "SELECT * from contact_list")
     mailing_list = dict()
     for p in persons:
         # Have to use a loop because of fields like "tolerance"
@@ -127,18 +127,18 @@ def funtimes(db, jk, k, name):
         quit_server(server)
 
 
-v = {"name": "Catherine", "matches": set()}
-v["matches"].add("ABC -> DEF")
-v["matches"].add("GFH -> IJK")
-k = ("catzhangy1@gmail.com", 0)
+# v = {"name": "Catherine", "matches": set()}
+# v["matches"].add("ABC -> DEF")
+# v["matches"].add("GFH -> IJK")
+# k = ("catzhangy1@gmail.com", 0)
 
-s = start_server()
-send_email(k, v, s)
-quit_server(s)
+# s = start_server()
+# send_email(k, v, s)
+# quit_server(s)
 
-k = ("jackson.chang@berkeley.edu", 0)
-name = "Jackson"
-jk = "kai.si@berkeley.edu"
+# k = ("jackson.chang@berkeley.edu", 0)
+# name = "Jackson"
+# jk = "kai.si@berkeley.edu"
 
-db = db2.connect_db()
-funtimes(db, jk, k, name)
+# db = db2.connect_db()
+# funtimes(db, jk, k, name)
