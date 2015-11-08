@@ -9,14 +9,13 @@ angular.module('esfd.search', ['ngRoute'])
         });
     }])
 
-    .controller('SearchCtrl', ['$scope','$log', '$window', '$http', function($scope, $log, $window, $http ) {
-            $log.log("test");
-            console.log('test');
+    .controller('SearchCtrl', ['$scope','$log', 'dataService', '$http', function($scope, $log, dataService, $http ) {
             $http.get('/search',null).
                 success(function(results){
 
                     $log.log(results);
-                    $window.location.path = ('/results');
+                    dataService.addResult(results);
+                    $log.log(dataService.getResult());
                 }).
                 error(function(error){
                     $log.log(error);
