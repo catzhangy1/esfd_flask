@@ -7,13 +7,18 @@ import psycopg2
 
 
 def connect_db():
+    # db = psycopg2.connect(
+    #     database='jetblue',
+    #     user='catzhangy1',
+    #     port='5432',
+    #     host='localhost',
+    # )
     db = psycopg2.connect(
-        database='jetblue',
-        user='catzhangy1',
-#         user='postgres',
-#         password='1234',
+        database='htencuzl',
+        user='htencuzl',
+        password='TSYmXOOWqoFMEQAx1lfRa3JZ2BbY-H6-',
         port='5432',
-        host='localhost',
+        host='pellefant-01.db.elephantsql.com',
     )
     return db
 
