@@ -3,7 +3,6 @@ Created on Oct 10, 2015
 
 @author: catzhangy1
 '''
-import db
 import db2
 import ast
 import notify
@@ -21,15 +20,6 @@ createuser admin -- create admin user
 createdb -U admin testdb'''
 
 app = Flask(__name__)
-
-auth_query_parameters = {
-    "response_type": "code",
-    "redirect_uri": REDIRECT_URI,
-    "scope": SCOPE,
-    # "state": STATE,
-    # "show_dialog": SHOW_DIALOG_str,
-    "client_id": CLIENT_ID
-}
     
 @app.route('/search', methods=['GET'])
 def testMethod3():
