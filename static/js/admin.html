@@ -1,0 +1,66 @@
+<div>
+
+    <div class="head" style = 'width: 250px; margin-left: auto; margin-right: auto;'>
+        <p> <i> Admins: Use this to insert a new Getaway. This will notify users who may be interested in the deal </i></p>
+    </div>
+
+    <form ng-submit="submit()" ng-controller="AdminCtrl">
+        <div class="form-group">
+            <label for="origin">Airport of Origin </label>
+            <input type="text" class="form-control" id="origin" ng-model="origin" placeholder="JFK">
+        </div>
+
+        <div class="form-group">
+            <label for="dest">Airport of Destination </label>
+            <input type="text" class="form-control" id="dest" ng-model="dest" placeholder="LGB">
+        </div>
+
+        <div class="form-group">
+            <label for="hotel">Hotel Name</label>
+            <input type="text" class="form-control" id="hotel" ng-model="hotel" placeholder="Hilton Express">
+        </div>
+
+        <div class="form-group">
+            <label for="nights">Hotel Number of Nights </label>
+            <input type="text" class="form-control" id="nights" ng-model="nights" placeholder="10">
+        </div>
+
+        <div class="form-group">
+            <label for="checkin">Hotel Check In Date </label>
+            <input type="text" class="form-control" id="checkin" ng-model="checkin" placeholder="2015/11/08">
+        </div>
+
+        <div class="form-group">
+            <label for="checkout">Hotel Check Out Date   </label>
+            <input type="text" class="form-control" id="checkout" ng-model="checkout" placeholder="2015/11/11">
+        </div>
+
+        <div class="form-group">
+            <label for="expedia"> Expedia Price </label>
+            <input type="number" class="form-control" id="expedia" ng-model="expedia" placeholder="345.69">
+        </div>
+
+        <div class="form-group">
+            <label for="jetblue"> JetBlue price</label>
+            <input type="number" class="form-control" id="jetblue" ng-model="jetblue" placeholder="256.87">
+        </div>
+
+        <div class="form-group">
+            <label for="percent">Percent in Savings</label>
+            <input type="number" class="form-control" id="percent" ng-model="percent" placeholder="0.00769">
+        </div>
+        <div class="form-group">
+            <label for="month">Month of Travel</label>
+            <input type="number" class="form-control" id="month" ng-model="month" placeholder="11">
+        </div>
+
+        <div class="form-group">
+            <label for="weeks">Weeks in Advance</label>
+            <input type="number" class="form-control" id="weeks" ng-model="weeks" placeholder="3">
+        </div>
+
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+</div>
