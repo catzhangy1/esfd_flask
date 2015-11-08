@@ -73,6 +73,10 @@ def testMethod3():
 @app.route('/notify', methods=['POST'])
 def emailSO():
     data = ast.literal_eval(request.data)
+    print data;
+    print data[0];
+    print data[1];
+    print data[2];
     notify.funtimes(db2.connect_db(), data[1], data[2], data[0])
     return 'success'
 

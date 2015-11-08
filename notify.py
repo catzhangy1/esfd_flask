@@ -93,7 +93,7 @@ def send_email(k, v, server):
 def funtimes(db, jk, k, name):
     if jk and k:
         server = start_server()
-        entry = db2.field_query(db)
+        entry = db2.field_query(db)[0]
         msg = MIMEText(''.join([
             "Hi %s's significant other, \n\n" % name,
             "Congratulations!  We are writing to inform you that ",
