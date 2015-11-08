@@ -53,6 +53,7 @@ def query(db, query):
         except:
             print "ate shat fucked died"
             return []
+    return []
 
 
 # Takes a mapping of fields, converts to a query, and executes
