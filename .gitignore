@@ -1,0 +1,8 @@
+# Flask
+
+*.pyc
+.idea/
+
+# Bower
+
+bower_components/
