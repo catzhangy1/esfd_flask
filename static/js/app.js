@@ -5,7 +5,8 @@ angular.module('esfd', [
     'esfd.results',
     'esfd.notify',
     'esfd.subscribe',
-    'esfd.admin'])
+    'esfd.admin',
+    'esfd.game'])
     .service('dataService', function() {
       var data = [];
       var soContent = {
@@ -49,6 +50,7 @@ angular.module('esfd', [
         },
       }
     })
+<<<<<<< HEAD
   .config(['$routeProvider',
     function($routeProvider) {
       $routeProvider.
@@ -56,3 +58,12 @@ angular.module('esfd', [
           redirectTo: '/home'
         });
     }]);
+=======
+.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      otherwise({
+        redirectTo: '/home'
+      });
+  }]);
+>>>>>>> ee2bfeb74bb14dd2805a6c408ce420b41594b79b

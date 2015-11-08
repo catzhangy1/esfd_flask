@@ -1,0 +1,12 @@
+.game table {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+
+.center-cropped {
+  width: 200px;
+  height: 200px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
