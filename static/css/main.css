@@ -77,6 +77,71 @@ body {
   font-size: 100px;
 }
 
+.result-container {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #414C52;
+  font-size: 30px;
+
+}
+.result-container .header{
+   background-color: #2CA1DB;
+  text-align: left;
+   height: 50px;
+  font-size: 30px;
+  padding-left: 20px;
+
+}
+.result-container p {
+  font-size: 12px;
+  text-shadow: none;
+}
+
+.result-container .footer{
+  font-size: 20px;
+  border-bottom-width: 1px;
+  border-bottom-color: #1489C4;
+  padding-bottom: 15px;
+
+}
+
+.result-container .footer-2{
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.results-container a {
+  text-shadow: none;
+}
+
+
+
+.result-container .footer:hover{
+  background-color: #1489C4;
+}
+
+.result-container .footer-2:hover{
+  background-color: #1489C4;
+}
+
+hr{
+
+display: block;
+  position: relative;
+  padding: 0;
+  margin-left: 30px;
+  margin-right:30px;
+  height: 0;
+  max-height: 0;
+  font-size: 1px;
+  line-height: 0;
+  clear: both;
+  border: none;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #ffffff;
+
+}
 /*
  * Header
  */

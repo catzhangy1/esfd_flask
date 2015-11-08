@@ -9,17 +9,28 @@ angular.module('esfd.results', ['ngRoute'])
         });
     }])
 
+.controller('ResultsCtrl',
+    ['$scope','$log', 'dataService', '$http', '$window',
+        function($scope, $log, dataService, $http, $window) {
+    $scope.reloadRoute = function() {
+        $window.location.reload();
+    }
 
-.controller('ResultsCtrl', ['$scope','$log', 'dataService', function($scope, $log, dataService) {
-    $log.log('launched results');
-    $log.log(dataService.getResult());
-        var results = dataService.getResult();
-        if(results.length == 1){
-            $scope.result = results[0];
-        } else{
-            //do something else with multi list view
-            $scope.result = results[0];
-        }
-        $log.log($scope.result);
-
+    var results = dataService.getResult();
+    $log.log(results);
+    if (results.length > 0) {
+        $scope.result = results[0];
+    }else{
+        $http.get('/search',null).
+            success(function(results){
+                dataService.addResult(results);
+                results = dataService.getResult();
+                $scope.result = results[0];
+            }).
+            error(function(error){
+                $log.log(error);
+            });
+    }
+    $scope.result = results[0];
+    $log.log(results);
 }]);

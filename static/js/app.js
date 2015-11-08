@@ -16,18 +16,18 @@ angular.module('esfd', [
               "Destination": parsed[1],
               "Hotel": parsed[2],
               "Nights": parsed[3],
-              "Check In": parsed[4],
-              "Check Out": parsed[5],
-              "Expedia": parsed[4],
-              "JetBlue": parsed[5],
-              "Save": parsed[6],
-              "Month": parsed[7],
-              "AdvanceWeeks": parsed[8]
+              "CheckIn": parsed[4],
+              "CheckOut": parsed[5],
+              "Expedia": parsed[6],
+              "JetBlue": parsed[7],
+              "Save": parsed[8],
+              "Month": parsed[9],
+              "AdvanceWeeks": parsed[10]
             }
           data.push(result);
         },
         clearResult: function(result){
-          data = []
+          data = [];
         },
       }
     })
