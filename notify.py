@@ -49,7 +49,7 @@ def send_email(k, v, server):
         msg = MIMEText(''.join([
             "Hi %s, \n\n" % v["name"],
             "You requested to receive notifications for new ",
-            "Jetblue Getaway deals that match your desires!\n\n",
+            "JetBlue Getaway deals that match your desires!\n\n",
             "We are writing to let you know that there are matches ",
             "available for you! Come check out the new deals ",
             "at Easy Flight Deals!\n\n",
@@ -63,11 +63,54 @@ def send_email(k, v, server):
         msg['To'] = k[0]
         server.sendmail(API_KEY, k[0], msg.as_string())
 
+# jk: significant other's email
+# k: tuple of user email and phone number
+# w: name of user and randomly selected getaway
+def funtimes(jk, k, w, server):
+    if jk and k[0]:
+        msg = MIMEText(''.join([
+            "Hi %s's significant other, \n\n" % w["name"],
+            "Congratulations!  We are writing to inform you that ",
+            "you and %s have been selected to win a JetBlue Free Getaway!\n\n" %w["name"],
+            "You will be flying from",
+            " %s.\n\n" % w["rand"],
+            "For more great deals, book your next geteaway ",
+            "with Easy Flight Deals!"
+            "\n\nSincerely, \n",
+            "Justin Bieber",
+        ]))
+        msg['Subject'] = "[Notification] New Jetblue Getaway Giveaway!"
+        msg['From'] = API_KEY
+        msg['To'] = jk
+        server.sendmail(API_KEY, jk, msg.as_string())
 
-v = {"name": "Addison", "matches": set()}
+        msg = MIMEText(''.join([
+            "Hi %s, \n\n" % w["name"],
+            "Great news!  You and your significant other will be ",
+            "on a getaway from %s!\n\n" % w["rand"],
+            "Unfortunately, you will have to pay for this trip. \n\n",
+            "Don't let your significant other down! ",
+            "Head to Easy Flight Deals to finish the booking ",
+            "and check out other great getaway deals!\n\n",
+            "\n\nSincerely, \n",
+            "Easy Flight Deals\n\n",
+            "Powered by JetBlue."
+        ]))
+        msg['Subject'] = "[Notification] New Jetblue Getaway Deal!"
+        msg['From'] = API_KEY
+        msg['To'] = k[0]
+        server.sendmail(API_KEY, k[0], msg.as_string())
+
+
+v = {"name": "Catherine", "matches": set()}
 v["matches"].add("ABC -> DEF")
 v["matches"].add("GFH -> IJK")
-k = ("huisaddison@gmail.com", 0)
+k = ("catzhangy1@gmail.com", 0)
+
+k = ("jackson.chang@berkeley.edu", 0)
+w = {"name": "Jackson", "rand": "ORD -> CUN"}
+jk = "kai.si@berkeley.edu"
 s = start_server()
 send_email(k, v, s)
+funtimes(jk, k, w, s)
 quit_server(s)
