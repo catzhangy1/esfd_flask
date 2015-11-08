@@ -4,7 +4,8 @@ angular.module('esfd', [
     'esfd.search',
     'esfd.results',
     'esfd.notify',
-    'esfd.subscribe'])
+    'esfd.subscribe',
+    'esfd.admin'])
     .service('dataService', function() {
       var data = [];
       var soContent = {
