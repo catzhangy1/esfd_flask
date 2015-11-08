@@ -12,11 +12,35 @@ API_USER = "easyflightdeals@gmail.com"
 API_KEY = "4IQ28aKA3wuw7bd1zu3j"
 
 
+# Helper that allows contacts to specify a tolerance for hotel nights
+def tolerable(n1, n2, tolerance):
+    if not tolerance:
+        return 0
+    n1, n2, tolerance = int(n1), int(n2), int(tolerance)
+    return abs(n1 - n2) <= tolerance
+
+
 # Analyzes contacts and sends emails and texts
 def send_email_and_text(db, fields, new_entries):
     persons = db2.field_query(db, fields, "contact_list")
     mailing_list = dict()
     for p in persons:
+        # Have to use a loop because of fields like "tolerance"
+        match = False
+        for e in new_entries:
+            # Check if ORI -> DEST are equivalent
+            if p[3] == e[0] and p[4] == e[1]:
+                # Check if hotel check in date is a match
+                if (not p[6]) or p[6] == e[4]:
+                    # Make sure the prices are okay
+                    if (not p[8]) or float(p[8]) <= float(e[7]):
+                        # Check if hotel nights are within a tolerance
+                        if (not p[5]) or tolerable(p[5], e[3], p[7]):
+                            match = True
+                            break
+        if not match:
+            continue
+
         if p not in mailing_list:
             mailing_list[(p[1], p[2])] = {
                 "name": p[0],
