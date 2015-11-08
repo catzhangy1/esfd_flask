@@ -5,7 +5,8 @@ angular.module('esfd', [
     'esfd.results',
     'esfd.notify',
     'esfd.subscribe',
-    'esfd.admin'])
+    'esfd.admin',
+    'esfd.game'])
     .service('dataService', function() {
       var data = [];
       var soContent = {
