@@ -1,0 +1,60 @@
+  <div class="inner-cover">
+    <div class="game-container" ng-controller ="GameCtrl">
+      <h1 class="cover-heading">Game</h1>
+      <p class="lead">Play this game to unlock great flight deals</p>
+      <div class="lead">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="game">
+              <table>
+                <tr>
+                  <td>
+                    <div class="q1 center-cropped enabled" 
+                         style="background-image: url('{{result.image1}}')"
+                         ng-click="game_submit(1)">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="q2 center-cropped enabled" 
+                         style="background-image: url('{{result.image2}}')"
+                         ng-click="game_submit(2)">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="q3 center-cropped enabled" 
+                         style="background-image: url('{{result.image3}}')"
+                         ng-click="game_submit(3)">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="q4 center-cropped enabled" 
+                         style="background-image: url('{{result.image4}}')"
+                         ng-click="game_submit(4)">
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            <div class="game-q">
+              Select <b> {{result.location}} </b> to unlock a flight there!
+            </div>
+            <div class="game-result" ng-show="comp">
+              <div class="game-result-win" ng-show="won">
+                You were correct, and you can save {{result.percent}}% by booking this flight to {{result.location}} now!
+              </div>
+              <div class="game-result-wrong" ng-hide="won">
+                You were wrong, try again? 
+                <div class = "button" >
+                  <a ng-click="gameReload()">
+                      Yeah
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
