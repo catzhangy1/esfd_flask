@@ -80,6 +80,15 @@ def subscribe():
     db2.insert_into_db(db, [tuple(data)], "contact_list")
     return 'success'
 
+@app.route('/admin', methods=['POST'])
+def admin():
+    data = ast.literal_eval(request.data)
+    db = db2.connect_db()
+    db2.insert_into_db(db, [tuple(data)])
+    # Check mailing list
+    notify.send_emails(db, [tuple(data)])
+    return 'success'
+
 @app.route("/")
 def main():
 #     try:
