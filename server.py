@@ -3,7 +3,7 @@ Created on Oct 10, 2015
 
 @author: catzhangy1
 '''
-import db
+import db, db2
 
 from flask import Flask, render_template, flash, redirect, url_for, Blueprint, request, g
 import json
@@ -86,7 +86,7 @@ def main():
 # #     token = util.prompt_for_user_token(username,scope)
 # #    connect.close()
 #     return render_template('index.html', name='hello')
-
+"""
     try:
         connect = db.connect_db()
         db.init_db(connect)
@@ -96,6 +96,8 @@ def main():
         print 'Connected to database'
     except:
         print "Database not ready to be used"
+"""
+    connect = db2.connect_db()
 #     connect.close()
 #     url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
 #     auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
