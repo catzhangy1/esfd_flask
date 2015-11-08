@@ -55,8 +55,8 @@ def send_email(k, v, server):
             "at Easy Flight Deals!\n\n",
             "The following origin -> destination pairs matched ",
             "for you: %s" % ", ".join([str(m) for m in v["matches"]]),
-            "\n\n Sincerely, \n",
-            "Eat Shit Fuck Die",
+            "\n\nSincerely, \n",
+            "Easy Flight Deals",
         ]))
         msg['Subject'] = "[Notification] New Jetblue Getaway Deal!"
         msg['From'] = API_KEY
