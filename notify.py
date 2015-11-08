@@ -12,6 +12,19 @@ API_USER = "easyflightdeals@gmail.com"
 API_KEY = "4IQ28aKA3wuw7bd1zu3j"
 
 
+# Starts an SMTP server for email sending
+def start_server():
+    server = smtplib.SMTP("smtp.gmail.com:587")
+    server.ehlo()
+    server.starttls()
+    server.login(API_USER, API_KEY[::-1])
+    return server
+
+# Quits the SMTP server after emails are sent
+def quit_server(server):
+    server.quit()
+
+
 # Helper that allows contacts to specify a tolerance for hotel nights
 def tolerable(n1, n2, tolerance):
     if not tolerance:
@@ -20,8 +33,8 @@ def tolerable(n1, n2, tolerance):
     return abs(n1 - n2) <= tolerance
 
 
-# Analyzes contacts and sends emails and texts
-def send_email_and_text(db, new_entries):
+# Analyzes contacts and sends emails
+def send_emails(db, new_entries):
     persons = db2.query(db, "SELECT * from contact_list")
     mailing_list = dict()
     for p in persons:
@@ -29,24 +42,24 @@ def send_email_and_text(db, new_entries):
         match = False
         for e in new_entries:
             # Check if ORI -> DEST are equivalent
-            if p[3] == e[0] and p[4] == e[1]:
+            if p[2] == e[0] and p[3] == e[1]:
                 # Check if hotel check in date is a match
-                if (not p[6]) or p[6] == e[4]:
+                if (not p[5]) or p[5] == e[4]:
                     # Make sure the prices are okay
-                    if (not p[8]) or float(p[8]) <= float(e[7]):
+                    if (not p[7]) or float(p[7]) <= float(e[7]):
                         # Check if hotel nights are within a tolerance
-                        if (not p[5]) or tolerable(p[5], e[3], p[7]):
+                        if (not p[4]) or tolerable(p[4], e[3], p[6]):
                             match = True
                             break
         if not match:
             continue
 
         if p not in mailing_list:
-            mailing_list[(p[1], p[2])] = {
+            mailing_list[p[1]] = {
                 "name": p[0],
                 "matches": set(),
             }
-        mailing_list[(p[1], p[2])]["matches"].add("%s -> %s" % (p[3], p[4]))
+        mailing_list[p[1]]["matches"].add("%s -> %s" % (p[2], p[3]))
 
     server = start_server()
     for k, v in mailing_list.items():
@@ -54,22 +67,9 @@ def send_email_and_text(db, new_entries):
     quit_server(server)
 
 
-def start_server():
-    server = smtplib.SMTP("smtp.gmail.com:587")
-    server.ehlo()
-    server.starttls()
-    server.login(API_USER, API_KEY[::-1])
-    return server
-
-
-def quit_server(server):
-    server.quit()
-
-
-# k is tuple of email and phone number
-# v is name and matches
+# (k, v): (user's email, user's name and matches)
 def send_email(k, v, server):
-    if k[0]:
+    if k:
         msg = MIMEText(''.join([
             "Hi %s, \n\n" % v["name"],
             "You requested to receive notifications for new ",
@@ -84,14 +84,13 @@ def send_email(k, v, server):
         ]))
         msg['Subject'] = "[Notification] New Jetblue Getaway Deal!"
         msg['From'] = API_KEY
-        msg['To'] = k[0]
-        server.sendmail(API_KEY, k[0], msg.as_string())
+        msg['To'] = k
+        server.sendmail(API_KEY, k, msg.as_string())
 
 
-# jk: significant other's email
-# k: tuple of user email and phone number
+# (jk, k, name): (significant other's email, user's email, user's name)
 def funtimes(db, jk, k, name):
-    if jk and k[0]:
+    if jk and k:
         server = start_server()
         entry = db2.field_query(db)
         msg = MIMEText(''.join([
@@ -122,23 +121,24 @@ def funtimes(db, jk, k, name):
         ]))
         msg['Subject'] = "[Notification] New Jetblue Getaway Deal!"
         msg['From'] = API_KEY
-        msg['To'] = k[0]
-        server.sendmail(API_KEY, k[0], msg.as_string())
+        msg['To'] = k
+        server.sendmail(API_KEY, k, msg.as_string())
         quit_server(server)
 
 
-# v = {"name": "Catherine", "matches": set()}
-# v["matches"].add("ABC -> DEF")
-# v["matches"].add("GFH -> IJK")
-# k = ("catzhangy1@gmail.com", 0)
+# Testing
+v = {"name": "Catherine", "matches": set()}
+v["matches"].add("ABC -> DEF")
+v["matches"].add("GFH -> IJK")
+k = "catzhangy1@gmail.com"
 
-# s = start_server()
-# send_email(k, v, s)
-# quit_server(s)
+s = start_server()
+send_email(k, v, s)
+quit_server(s)
 
-# k = ("jackson.chang@berkeley.edu", 0)
-# name = "Jackson"
-# jk = "kai.si@berkeley.edu"
+k = "jackson.chang@berkeley.edu"
+name = "Jackson"
+jk = "kai.si@berkeley.edu"
 
-# db = db2.connect_db()
-# funtimes(db, jk, k, name)
+db = db2.connect_db()
+funtimes(db, jk, k, name)

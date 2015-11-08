@@ -18,7 +18,6 @@ CREATE TABLE jetblue_data (
 CREATE TABLE contact_list (
   name text,
   email text,
-  phone text,
   origin text,
   destination text,
   hotel_nights decimal,
