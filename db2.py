@@ -54,6 +54,7 @@ def query(db, query):
         except:
             print "ate shat fucked died"
             return []
+    return []
 
 
 # Takes a mapping of fields, converts to a query, and executes
@@ -64,7 +65,7 @@ def field_query(db, fields=[], table="jetblue_data"):
             "SELECT * FROM %s ORDER BY RANDOM() LIMIT 1" % table,
         )
     else:
-        #### FIX POTENTIAL SQL INJECTION ####
+        # FIX POTENTIAL SQL INJECTION #
         return query(
             db,
             ''.join(
@@ -76,9 +77,9 @@ def field_query(db, fields=[], table="jetblue_data"):
         )
 
 
-def notify_contacts(db, fields):
-    persons = field_query()
-    # TODO: For each person, send email/text with info on fields
+def flask_field_query(db, fields=[], table="jetblue_data"):
+    results = field_query(db, fields, table)
+    return '@'.join(['*'.join([str(x) for x in y]) for y in results])
 
 
 def insert_initial_jetblue_data(db):

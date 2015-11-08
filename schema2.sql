@@ -16,7 +16,13 @@ CREATE TABLE jetblue_data (
 );
 
 CREATE TABLE contact_list (
+  name text,
   email text,
   phone text,
-  hash_of_orig_dest text
+  origin text,
+  destination text,
+  hotel_nights decimal,
+  hotel_check_in_date date,
+  tolerance int,
+  max_price money
 );
