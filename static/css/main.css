@@ -72,7 +72,7 @@ body {
 .inner {
   padding: 30px;
 }
-.inner-cover > h1{
+.inner-cover .title div{
   font-family: 'Pacifico', cursive;
   font-size: 100px;
 }

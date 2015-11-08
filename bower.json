@@ -5,7 +5,7 @@
     "Catherine Zhang",
     "Addison Hu",
     "Jackson Chang",
-    "Kai Si",
+    "Kai Si"
   ],
   "license": "MIT",
   "ignore": [
@@ -16,12 +16,12 @@
     "tests"
   ],
   "dependencies": {
-    "angular":"1.4.x"
+    "angular":"1.4.x",
     "angular-route": "~1.2.21",
     "bootstrap": "~3.2.0",
     "restangular": "~1.4.0",
     "angularjs": "~1.2.21",
-    "angular-local-storage": "~0.0.7"
+    "angular-local-storage": "~0.0.7",
     "jquery":"~2.1.1"
   }
 }
