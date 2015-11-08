@@ -23,5 +23,3 @@ def parseResume(filename = "justinbieber-getaways.csv"):
         data = [tuple(line) for line in csv.reader(f)]
 
     return data
-
-parseResume()
