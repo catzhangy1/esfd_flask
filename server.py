@@ -66,9 +66,7 @@ def testMehthod():
     
 @app.route('/search', methods=['GET'])
 def testMethod3():
-    for m in db2.field_query(db2.connect_db())[0]:
-        print m
-    return db2.field_query(db2.connect_db())[0]
+    return db2.flask_field_query(db2.connect_db())
 
 @app.route('/#/search', methods=['GET'])
 def testMehthod4():

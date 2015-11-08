@@ -2,9 +2,25 @@ angular.module('esfd', [
     'ngRoute',
     'esfd.home',
     'esfd.search',
-    'esfd.results'])
+    'esfd.results',
+    'esfd.notify'])
     .service('dataService', function() {
       var data = [];
+      var soContent = {
+        senderName:"",
+        senderEmail:"",
+        receiverEmail:""}
+      var subscribeContent = {
+        name: "",
+        email: "",
+        phone: "",
+        origin: "",
+        destination: "",
+        hotel_nights: 0,
+        hotel_check_in_date: new Date(),
+        tolerance: 0,
+        max_price: 0,
+      }
       return {
         getResult: function() {
             return data;
@@ -31,10 +47,10 @@ angular.module('esfd', [
         },
       }
     })
-.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      otherwise({
-        redirectTo: '/home'
-      });
-  }]);
+  .config(['$routeProvider',
+    function($routeProvider) {
+      $routeProvider.
+        otherwise({
+          redirectTo: '/home'
+        });
+    }]);
