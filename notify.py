@@ -26,7 +26,8 @@ def send_email_and_text(db, fields, new_entries):
     for k, v in mailing_list.items():
         send_email(k, v)
 
-
+# k is tuple of email and phone number
+# v is name and matches
 def send_email(k, v):
     if k[0]:
         msg = MIMEText(''.join([
@@ -44,8 +45,14 @@ def send_email(k, v):
         msg['Subject'] = "[Notification] New Jetblue Getaway Deal!"
         msg['From'] = ME
         msg['To'] = k[0]
-        # TODO: Addy - https://sendgrid.com/docs/Integrate/Code_Examples/python.html
-        # s.sendmail(ME, [k[0]], msg.as_string())
+        username = 'easyflightdeals@gmail.com'
+        password = 'j3uz1db7wuw3AKa82QI4'
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.ehlo()
+        server.starttls()
+        server.login(username,password)
+        server.sendmail(ME, k[0], msg.as_string())
+        server.quit()
 
 
 v = { "name" : "Addison", "matches" : set() }
