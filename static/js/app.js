@@ -1,12 +1,18 @@
-var musicMatch = angular.module('musicMatch', []);
+var esfd= angular.module('esfd', [
+    'ngRoute'
+]);
 
-musicMatch.config(['$routeProvider',
+esfd.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/login', {
         templateUrl: '../templates/login.html',
         controller: 'loginCtrl'
       }).
+        when('/home', {
+          templateUrl: 'home.html',
+          controller: 'homeCtrl'
+        }).
       when('/success', {
         templateUrl: '../templates/login-success.html',
         controller: 'UserDetailCtrl'
@@ -16,6 +22,6 @@ musicMatch.config(['$routeProvider',
         controller: 'MatchCtrl'
       }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/home'
       });
   }]);
