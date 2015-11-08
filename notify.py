@@ -20,6 +20,7 @@ def start_server():
     server.login(API_USER, API_KEY[::-1])
     return server
 
+
 # Quits the SMTP server after emails are sent
 def quit_server(server):
     server.quit()
@@ -46,7 +47,7 @@ def send_emails(db, new_entries):
                 # Check if hotel check in date is a match
                 if (not p[5]) or p[5] == e[4]:
                     # Make sure the prices are okay
-                    if (not p[7]) or float(p[7]) <= float(e[7]):
+                    if (not p[7]) or float(p[7]) >= float(e[7]):
                         # Check if hotel nights are within a tolerance
                         if (not p[4]) or tolerable(p[4], e[3], p[6]):
                             match = True
@@ -54,7 +55,7 @@ def send_emails(db, new_entries):
         if not match:
             continue
 
-        if p not in mailing_list:
+        if p[1] not in mailing_list:
             mailing_list[p[1]] = {
                 "name": p[0],
                 "matches": set(),
@@ -124,21 +125,3 @@ def funtimes(db, jk, k, name):
         msg['To'] = k
         server.sendmail(API_KEY, k, msg.as_string())
         quit_server(server)
-
-
-# Testing
-v = {"name": "Catherine", "matches": set()}
-v["matches"].add("ABC -> DEF")
-v["matches"].add("GFH -> IJK")
-k = "catzhangy1@gmail.com"
-
-s = start_server()
-send_email(k, v, s)
-quit_server(s)
-
-k = "jackson.chang@berkeley.edu"
-name = "Jackson"
-jk = "kai.si@berkeley.edu"
-
-db = db2.connect_db()
-funtimes(db, jk, k, name)
