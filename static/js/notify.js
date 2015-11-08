@@ -25,8 +25,9 @@ angular.module('esfd.notify', ['ngRoute'])
                 $log.log($scope.rEmail);
                 $log.log($scope.sEmail);
                 var data = [$scope.name, $scope.rEmail, $scope.sEmail];
+                var obj = {name: $scope.name, rEmail: $scope.rEmail, sEmail: $scope.sEmail};
                 $log.log(data.join(" "));
-                $http.post('/search', data, null).
+                $http({method: "POST", url:"/notify", data:data}).
                     success(function(results){
                         $log.log(results);
                     }).

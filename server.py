@@ -5,6 +5,8 @@ Created on Oct 10, 2015
 '''
 import db
 import db2
+import ast
+import notify
 
 from flask import Flask, render_template, flash, redirect, url_for, Blueprint, request, g
 import json
@@ -68,9 +70,10 @@ def testMehthod():
 def testMethod3():
     return db2.flask_field_query(db2.connect_db())
 
-@app.route('/#/search', methods=['GET'])
-def testMehthod4():
-    print '#search'
+@app.route('/notify', methods=['POST'])
+def emailSO():
+    data = ast.literal_eval(request.data)
+    notify.funtimes(db2.connect_db(), data[1], data[2], data[0])
     return 'success'
 
 @app.route("/")
