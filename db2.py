@@ -28,7 +28,7 @@ def reset_tables(db):
             db.commit()
             print "Successfully reset tables."
         except:
-            print "ate shat fucked died"
+            print "Failed to reset tables."
 
 
 # Add entries into database. Must be well-formed.
@@ -43,7 +43,7 @@ def insert_into_db(db, entries=[], table="jetblue_data"):
             db.commit()
             print "Successfully inserted entries into %s." % table
         except:
-            print "ate shat fucked died"
+            print "Failed to insert entries."
 
 
 # Arbitrary query from database
@@ -54,7 +54,7 @@ def query(db, query):
             cur.execute(query)
             return cur.fetchall()
         except:
-            print "ate shat fucked died"
+            print "Failed to execute query."
             return []
     return []
 

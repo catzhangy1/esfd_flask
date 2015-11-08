@@ -14,10 +14,7 @@ import csv
 ## 10                   Advance Weeks (0: within 1 week; 1: 1-2 weeks; 2: 2-4 weeks)
 ## 11                   Count (always 1)
 ####################################################################################
-def parseResume(filename = "justinbieber-getaways.csv"):
-
-    print "Welcome to Moron | Edge LLC Resume Parser!"
-    print "  powered by JustinBieber.\n"
+def parseResume(filename = "jetblue-getaways.csv"):
 
     with open(filename) as f:
         data = [tuple(line) for line in csv.reader(f)]
