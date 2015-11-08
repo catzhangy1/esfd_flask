@@ -30,8 +30,11 @@ angular.module('esfd.notify', ['ngRoute'])
                 $http({method: "POST", url:"/notify", data:data}).
                     success(function(results){
                         $log.log(results);
+                        $scope.message = "Success!";
+
                     }).
                     error(function(error){
+                        $scope.message = "Failure! Please try again later";
                         $log.log(error);
                     });
             }

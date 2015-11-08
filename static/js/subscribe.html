@@ -1,10 +1,12 @@
-<div>
+<div style ="overflow: scroll">
 
 <div class="head" style = 'width: 250px; margin-left: auto; margin-right: auto;'>
     <p> <i>If you would like to be the first one to know about JetBlue's latest Getaways, subscribe to our mailing list! </i></p>
 </div>
 
 <form ng-submit="submit()" ng-controller="SubscribeCtrl">
+
+
     <div class="form-group">
         <label for="inputName">Your name</label>
         <input type="text" class="form-control" id="inputName" ng-model="name" placeholder="John Doe">
@@ -29,7 +31,7 @@
     </div>
 
     <div class="form-group">
-        <label for="nights">Hotel Number of Nights (plus or minus Tolerance) (Optional) </label>
+        <label for="nights">Number of Nights (+/-Tolerance) (Optional) </label>
             <input type="text" class="form-control" id="nights" ng-model="nights" placeholder="10">
     </div>
 
@@ -37,6 +39,7 @@
         <label for="tol">Tolerance (Optional) </label>
             <input type="text" class="form-control" id="tol" ng-model="tol" placeholder="2">
     </div>
+
     <div class="form-group">
         <label for="price">Max Price (Optional) </label>
             <input type="text" class="form-control" id="price" ng-model="price" placeholder="1000">
@@ -44,7 +47,7 @@
 
 
 
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" >Submit</button>
 </form>
 
 </div>
