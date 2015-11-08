@@ -68,20 +68,22 @@ def field_query(db, fields=[], table="jetblue_data"):
         # FIX POTENTIAL SQL INJECTION #
         return query(
             db,
-            ''.join(
+            ''.join([
                 "SELECT * FROM %s WHERE " % table,
                 ' AND '.join(
                     ["%s = %s" % (f[0], f[1]) for f in fields.items()],
                 ),
-            ),
+            ]),
         )
 
 
+# Executes a Flask friendly query by returning a formatted string
 def flask_field_query(db, fields=[], table="jetblue_data"):
     results = field_query(db, fields, table)
     return '@'.join(['*'.join([str(x) for x in y]) for y in results])
 
 
+# Populate the jetblue_data table with initial dataset
 def insert_initial_jetblue_data(db):
     import resume_parser
     insert_into_db(db, resume_parser.parseResume())
