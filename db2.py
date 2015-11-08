@@ -5,6 +5,7 @@ Created on Nov 7, 2015
 '''
 import psycopg2
 
+
 def connect_db():
     db = psycopg2.connect(
         database='jetblue',
@@ -12,8 +13,9 @@ def connect_db():
         password='1234',
         port='5432',
         host='localhost',
-    ) 
+    )
     return db
+
 
 # Don't call this. The database ia already set-up at this point.
 def create_table(db):
@@ -47,7 +49,7 @@ def insert_into_db(db, entries=[]):
     if db and entries:
         try:
             db.cursor().execute(
-                "INSERT INTO jetblue_data VALUES %s" %str(entries)[1:-1],
+                "INSERT INTO jetblue_data VALUES %s" % str(entries)[1:-1],
             )
             db.commit()
             print "Successfully inserted entries into db."
@@ -61,39 +63,32 @@ def query(db, query):
         try:
             cur = db.cursor()
             cur.execute(query)
-            return cur.fetchall() 
+            return cur.fetchall()
         except:
             print "ate shat fucked died"
             return []
 
+
+# Takes a mapping of fields, converts to a query, and executes
+def search_query(db, fields):
+    if not fields:
+        return query(
+            db,
+            "SELECT * FROM jetblue_data ORDER BY RANDOM() LIMIT 1",
+        )
+    else:
+        return query(
+            db,
+            ''.join(
+                "SELECT * FROM jetblue_data WHERE ",
+                ' AND '.join(
+                    ["%s = %s" % (f[0], f[1]) for f in fields.items()],
+                ),
+            ),
+        )
+
+
 # TODO: Addy
 def insert_initial_jetblue_data(db):
-    placeholders = [
-        (
-            "AAA",
-            "BBB",
-            "C Hotel",
-            4.00,
-            "2015-11-07",
-            "2015-11-11",
-            1.00,
-            0.50,
-            50.0,
-            11.0,
-            0,
-        ),
-        (
-            "ZZZ",
-            "YYY",
-            "W Hotel",
-            10.00,
-            "2015-11-07",
-            "2015-11-17",
-            100.0,
-            33.33,
-            66.67,
-            11.0,
-            1,
-        ),
-    ]
-    insert_into_db(db, placeholders)
+    import resume_parser
+    insert_into_db(db, resume_parser.parseResume())
