@@ -55,6 +55,23 @@ auth_query_parameters = {
     # "show_dialog": SHOW_DIALOG_str,
     "client_id": CLIENT_ID
 }
+@app.route('/results')
+def testMethod2():
+    return 4
+
+@app.route('/#/results')
+def testMehthod():
+    return 3
+    
+@app.route('/search', methods=['GET'])
+def testMethod3():
+    print 'search'
+    return 'success'
+
+@app.route('/#/search', methods=['GET'])
+def testMehthod4():
+    print '#search'
+    return 'success'
 
 @app.route("/")
 def main():
@@ -123,10 +140,6 @@ def callback():
     playlist_data = json.loads(playlist_response.text)
     print playlist_data
     return 'it works!'
-
-@app.route("/hellotest")
-def hellotest():
-    return 'hello world'
 
 if __name__ == "__main__":
     app.run(debug=True)

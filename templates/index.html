@@ -8,11 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Bringing music lovers together">
     <meta name="author" content="Janan and Cat">
-    <link href='https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400,300' rel='stylesheet' type='text/css'> 
-
-    <script src="../static/js/app.js"></script>
-    <script src="../static/js/appControllers.js"></script>
-
+    <link href='https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -48,17 +44,17 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Messages</a></li>
+                  <li><a href="/#/search">Search</a></li>
+                  <li><a href="/#/subscribe">Search</a></li>
+                  <li><a href="/#/notify">Notify</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
-
         <div class="container main-view">
 <!--             container for the main view -->
-            <div ng-view> <p>a little test</p></div>
+            <div ng-view></div>
           <div class="mastfoot">
             <div class="inner">
               <p>Main page template inspired by <a href="http://getbootstrap.com">Bootstrap</a>. HackNC 2015. </p>
@@ -70,12 +66,16 @@
       </div>
 
     </div>
-
+      <script src="../static/js/app.js"></script>
+      <script src="../static/js/home.js"></script>
+      <script src="../static/js/results.js"></script>
+      <script src="../static/js/search.js"></script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
