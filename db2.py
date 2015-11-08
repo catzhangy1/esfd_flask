@@ -33,6 +33,8 @@ def reset_tables(db):
 
 # Add entries into database. Must be well-formed.
 def insert_into_db(db, entries=[], table="jetblue_data"):
+    for shit in entries:
+        print shit
     if db and entries:
         try:
             db.cursor().execute(

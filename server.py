@@ -58,13 +58,6 @@ auth_query_parameters = {
     # "show_dialog": SHOW_DIALOG_str,
     "client_id": CLIENT_ID
 }
-@app.route('/results')
-def testMethod2():
-    return 4
-
-@app.route('/#/results')
-def testMehthod():
-    return 3
     
 @app.route('/search', methods=['GET'])
 def testMethod3():
@@ -78,6 +71,13 @@ def emailSO():
     print data[1];
     print data[2];
     notify.funtimes(db2.connect_db(), data[1], data[2], data[0])
+    return 'success'
+
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    data = ast.literal_eval(request.data)
+    db = db2.connect_db()
+    db2.insert_into_db(db, [tuple(data)], "contact_list")
     return 'success'
 
 @app.route("/")

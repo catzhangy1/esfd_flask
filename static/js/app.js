@@ -3,7 +3,8 @@ angular.module('esfd', [
     'esfd.home',
     'esfd.search',
     'esfd.results',
-    'esfd.notify'])
+    'esfd.notify',
+    'esfd.subscribe'])
     .service('dataService', function() {
       var data = [];
       var soContent = {
