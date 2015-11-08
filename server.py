@@ -69,17 +69,17 @@ def main():
 # #     token = util.prompt_for_user_token(username,scope)
 # #    connect.close()
 #     return render_template('index.html', name='hello')
-"""
-    try:
-        connect = db.connect_db()
-        db.init_db(connect)
-        
-        #sample query!!! 
-        print db.getSongsByGenre(connect, 1);
-        print 'Connected to database'
-    except:
-        print "Database not ready to be used"
-"""
+    """
+        try:
+            connect = db.connect_db()
+            db.init_db(connect)
+            
+            #sample query!!! 
+            print db.getSongsByGenre(connect, 1);
+            print 'Connected to database'
+        except:
+            print "Database not ready to be used"
+    """
     connect = db2.connect_db()
 #     connect.close()
 #     url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
